@@ -19,14 +19,14 @@ def populate_grid(grid: Grid, seed: int) -> None:
     grid.events[0][0].assign(check_event(grid, grid.events[0][0], grid.events[0], seed))
     # Loop through rows
     for row in grid.events:
-        # Loop through columns
-        if random.randint(0, 1) == 0:
-            for event in row:
-                parse_event(grid, event, row, num_users)
-        else:
-            col_num = len(row) - 1
-            while col_num >= 0:
-                parse_event(grid, row[col_num], row, num_users)
-                col_num -= 1
+      # Loop through columns
+      if random.randint(0, 1) == 0:
+          for event in row:
+              parse_event(grid, event, row, num_users)
+      else:
+          col_num = len(row) - 1
+          while col_num >= 0:
+              parse_event(grid, row[col_num], row, num_users)
+              col_num -= 1
           
     return grid

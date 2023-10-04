@@ -42,7 +42,9 @@ def get_data() -> list[object]:
     Uses SPREADSHEET_ID and DATA_RANGES literals to batch get the requested ranges
 
     Returns:
-        A list of objects where name property is range name and values property is a list of values in range
+        A list of objects where 
+            name property is range name and 
+            values property is a list of values in range
     """
     creds = validate()
 
@@ -93,7 +95,8 @@ def write_data(grid: Grid) -> bool:
             values.append([date.strftime("%m/%d/%Y")])
             if date.weekday() <= 4:
                 for event in grid.events[row_count]:
-                    values[count].append(f'{event.assigned.code if event.assigned is not None else "None"}')
+                    code = event.assigned.code if event.assigned is not None else "None"
+                    values[count].append(f'{code}')
                 row_count += 1
 
         body = {

@@ -3,8 +3,10 @@ class User:
 
     Attributes:
         code: A string containing the letter code for the user (unique)
-        allowed_cols : A list containing int indexes of columns that user can be added to
-        absent_rows: A list containing int indexes of rows that user cannot be added to (holidays etc.)
+        allowed_cols : A list containing int indexes of columns 
+          that user can be added to
+        absent_rows: A list containing int indexes of rows 
+          that user cannot be added to (holidays etc.)
     """
 
     def __init__(self, code: str) -> None:

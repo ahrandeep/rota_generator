@@ -9,10 +9,11 @@ def print_grid(grid: Grid) -> None:
 
     row_count = 0
     for date in grid.dates:
-        row_string = date.strftime("%m/%d/%Y")
-        if date.weekday() <= 4:
-            for event in grid.events[row_count]:
-                row_string += f'\t{event.assigned.code if event.assigned is not None else "None"}'
-            row_count += 1
-        
-        print(row_string)
+      row_string = date.strftime("%m/%d/%Y")
+      if date.weekday() <= 4:
+          for event in grid.events[row_count]:
+              code = event.assigned.code if event.assigned is not None else "None"
+              row_string += f'\t{code}'
+          row_count += 1
+      
+      print(row_string)

@@ -6,7 +6,8 @@ def parse_event(grid: Grid, event: Event, row: list[Event], num_users: int) -> N
     """Assigns a valid user to an event
 
     Uses check_event() to find a valid user and assigns it to event.
-    Ignores the first event (0, 0) in grid as this is assigned according to seed in main()
+    Ignores the first event (0, 0) in grid as
+      this is assigned according to seed in main()
 
     Args:
         grid: The main Grid for access to columns
