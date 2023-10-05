@@ -1,6 +1,7 @@
 from classes.grid import Grid, Event, User
 
-def check_event(grid: Grid, event: Event, row: list[Event], rand: int) -> User:
+def check_event(grid: Grid, event: Event, row: list[Event],
+                rand: int, verbose: bool = False) -> User:
   """Finds a valid user to assign to an event
   
   Checks user against unallowed columns and max assigned events
@@ -11,6 +12,7 @@ def check_event(grid: Grid, event: Event, row: list[Event], rand: int) -> User:
       event: The Event to check
       row: A list of all other events in the row (same date)
       rand: A random seed to help randomise assignments
+      verbose: A bool indicating whether to print verbose statements
   
   Returns:
       A valid User who can be assigned to the event
@@ -25,7 +27,8 @@ def check_event(grid: Grid, event: Event, row: list[Event], rand: int) -> User:
       for row_events in row:
         if row_events.assigned is user:
           if event.col in grid.columns[row_events.col].unallowed_cols:
-            print(f'{event.col} cannot be done with {row_events.col}')
+            if verbose:
+              print(f'{event.col} cannot be done with {row_events.col}')
             already_assigned =True
       
       if already_assigned:
@@ -53,7 +56,8 @@ def check_event(grid: Grid, event: Event, row: list[Event], rand: int) -> User:
         fortnight >= grid.columns[event.col].max_per_fortnight or 
         month >= grid.columns[event.col].max_per_month or 
         (consecutive and not grid.columns[event.col].consecutive_days)):
-        print(f'User {user.code} cannot be assigned more of '
+        if verbose:
+          print(f'User {user.code} cannot be assigned more of '
             f'{grid.columns[event.col].header}')
         continue
 

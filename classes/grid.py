@@ -1,4 +1,5 @@
 from datetime import datetime
+
 from classes.user import User
 from classes.event import Event
 from classes.column import Column

@@ -1,12 +1,18 @@
+from string import ascii_lowercase
+
 from classes.grid import Grid, Column
 import functions.sheets_api as sheets_api
-from string import ascii_lowercase
+
 
 def generate_grid(month: int, year:int) -> Grid:
     """Generates a grid with unassigned events representing each cell in the spreadsheet
     
+     Args:
+        month: An int determining which month the grid will correspond to (1-12)
+        year: An int determining which year the grid will coresspond to (XXXX)
+
     Returns:
-        A Grid object with unassigned events
+        A Grid object with date list for chosen month+year and unassigned events
     """
 
     grid = Grid(month, year)

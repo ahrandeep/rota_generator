@@ -1,9 +1,11 @@
+import random
+
 from classes.grid import Grid
 from functions.parse_event import parse_event
 from functions.check_event import check_event
-import random
 
-def populate_grid(grid: Grid, seed: int) -> None:
+
+def populate_grid(grid: Grid, seed: int, verbose: bool = False) -> None:
     """Fills in grid by assigning users to events
     
     Loops through rows either forwards or backwards randomly
@@ -11,6 +13,7 @@ def populate_grid(grid: Grid, seed: int) -> None:
     Args:
         grid: The main grid to populate
         seed: An int used to determine starting assignment in the first event
+        verbose: A bool indicating whether to print verbose statements 
     """
 
     num_users = len(grid.users) - 1
@@ -22,11 +25,11 @@ def populate_grid(grid: Grid, seed: int) -> None:
       # Loop through columns
       if random.randint(0, 1) == 0:
           for event in row:
-              parse_event(grid, event, row, num_users)
+              parse_event(grid, event, row, num_users, verbose)
       else:
           col_num = len(row) - 1
           while col_num >= 0:
-              parse_event(grid, row[col_num], row, num_users)
+              parse_event(grid, row[col_num], row, num_users, verbose)
               col_num -= 1
           
     return grid

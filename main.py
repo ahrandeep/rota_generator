@@ -5,12 +5,12 @@ from functions.print_grid import print_grid
 
 
 def main():
-    month, year = 10, 2023
+    month, year = 2, 2024
     grid = generate_grid(month, year)
 
-    grid = populate_grid(grid, 7)
+    grid = populate_grid(grid, 7, False)
 
-    print_grid(grid)
+    # print_grid(grid)
 
     sheets_api.write_data(grid)
 
