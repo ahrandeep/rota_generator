@@ -1,7 +1,7 @@
 from string import ascii_lowercase
 
 from classes.grid import Grid, Column
-import functions.sheets_api as sheets_api
+from functions.sheets_api.get_data import get_data
 
 
 def generate_grid(month: int, year:int) -> Grid:
@@ -17,7 +17,7 @@ def generate_grid(month: int, year:int) -> Grid:
 
     grid = Grid(month, year)
     
-    data = sheets_api.get_data()
+    data = get_data()
     allowed_users = data[0]['values'] if 'values' in data[0] else None
     column_rules = data[1]['values'] if 'values' in data[1] else None
     rules_len = len(column_rules)

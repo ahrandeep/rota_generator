@@ -1,4 +1,4 @@
-import functions.sheets_api as sheets_api
+from functions.sheets_api.write_data import write_data
 from functions.generate_grid import generate_grid
 from functions.populate_grid import populate_grid
 from functions.print_grid import print_grid
@@ -12,7 +12,7 @@ def main():
 
     # print_grid(grid)
 
-    sheets_api.write_data(grid)
+    write_data(grid)
 
 
 if __name__ == '__main__':
