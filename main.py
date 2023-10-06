@@ -8,7 +8,7 @@ def main():
     month, year = 2, 2024
     grid = generate_grid(month, year)
 
-    grid = populate_grid(grid, 7, False)
+    grid = populate_grid(grid, False)
 
     # print_grid(grid)
 

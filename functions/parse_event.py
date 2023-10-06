@@ -1,4 +1,4 @@
-import random
+from random import randint
 
 from classes.grid import Grid, Event
 from functions.check_event import check_event
@@ -20,11 +20,7 @@ def parse_event(grid: Grid, event: Event, row: list[Event],
         verbose: A bool indicating whether to print verbose statements
     """
     
-    if event.row == 0 and event.col == 0:
-        if event.assigned is None and verbose:
-            print(f'Unable to find match for {event.col}, {event.row}')
-    else:
-        event.assign(check_event(grid, event, row, random.randint(0, num_users)))
+    event.assign(check_event(grid, event, row, randint(0, num_users)))
 
-        if event.assigned is None and verbose:
-            print(f'Unable to find match for {event.col}, {event.row}')
+    if event.assigned is None and verbose:
+        print(f'Unable to find match for {event.col}, {event.row}')
