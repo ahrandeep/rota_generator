@@ -1,7 +1,7 @@
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
-from functions.sheets_api.sheets_api import validate, SPREADSHEET_ID
+from functions.sheets_api.sheets_api import creds, SPREADSHEET_ID
 from classes.grid import Grid
 
 
@@ -28,8 +28,6 @@ BORDER_STYLES = {
 }
 
 def write_data(grid: Grid) -> bool:
-
-    creds = validate()
 
     try:
         service = build('sheets', 'v4', credentials=creds)
@@ -70,7 +68,7 @@ def write_data(grid: Grid) -> bool:
             print(f"Sheet already exists - {sheetName}")
     except HttpError as err:
         print(err)
-        return None
+        return False
     try:
         # generate values for sheet input. Each row is a new list inside values
         # values = [
@@ -118,7 +116,7 @@ def write_data(grid: Grid) -> bool:
                             "startRowIndex": 0,
                             "endRowIndex": 33,
                             "startColumnIndex": 0,
-                            "endColumnIndex": 9
+                            "endColumnIndex": 8
                         },
                         "top": BORDER_STYLES["none"],
                         "bottom": BORDER_STYLES["none"],
@@ -135,7 +133,7 @@ def write_data(grid: Grid) -> bool:
                             "startRowIndex": 0,
                             "endRowIndex": valueLen + 1,
                             "startColumnIndex": 0,
-                            "endColumnIndex": 9
+                            "endColumnIndex": 8
                         },
                         "top": BORDER_STYLES["solid"],
                         "bottom": BORDER_STYLES["solid"],
@@ -162,6 +160,8 @@ def write_data(grid: Grid) -> bool:
                               body=update).execute()
             print(f"Format updated for sheet - '{sheetName}'")
 
+        return True
+    
     except HttpError as err:
         print(err)
-        return None
+        return False

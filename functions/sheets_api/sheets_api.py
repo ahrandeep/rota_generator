@@ -1,16 +1,15 @@
-from __future__ import print_function
-
-import os.path
-
-from google.auth.transport.requests import Request
-from google.oauth2.credentials import Credentials
-from google_auth_oauthlib.flow import InstalledAppFlow
-
+from google.oauth2.service_account import Credentials
 
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
 
 with open('spreadsheet_id.txt', 'r') as id:
     SPREADSHEET_ID = id.read()
+
+creds = Credentials.from_service_account_file("service_credentials.json", scopes=SCOPES)
+
+"""
+Previous implementation using user's google account oauth verification
+Changed to use service account
 
 def validate() -> Credentials:
     creds = None
@@ -32,3 +31,4 @@ def validate() -> Credentials:
             token.write(creds.to_json())
 
     return creds
+"""
